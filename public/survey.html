@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>FriendFinder</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+    integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  
+  <div class="container">
+    <h2>Survey</h2>
+    <hr>
+    <h3>Your Info:</h3>
+    <h4>Name (Required)</h4>
+    <input type="text" id="name" class="form-control" required>
+
+    <h4>Link to Photo Image (Required)</h4>
+    <input type="text" id="photo" class="form-control" required>
+
+    <h3>Question 1:</h3>
+    <h4>You like going out to eat:</h4>
+    <select id="question1">
+      <option value=""></option>
+      <option value="1">1 (Strongly Disagree)</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5 (Strongly Agree)</option>
+    </select>
+    <h3>Question 2:</h3>
+    <h4>You like going to the movies:</h4>
+    <select id="question2">
+      <option value=""></option>
+      <option value="1">1 (Strongly Disagree)</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5 (Strongly Agree)</option>
+    </select>
+    <h3>Question :</h3>
+    <h4>You like dogs as pets:</h4>
+    <select id="question3">
+      <option value=""></option>
+      <option value="1">1 (Strongly Disagree)</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5 (Strongly Agree)</option>
+    </select>
+    <h3>Question 4:</h3>
+    <h4>You like watching sports on TV:</h4>
+    <select id="question4">
+      <option value=""></option>
+      <option value="1">1 (Strongly Disagree)</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5 (Strongly Agree)</option>
+    </select>
+    <h3>Question 5:</h3>
+    <h4>You like long walks on the beach:</h4>
+    <select id="question5">
+      <option value=""></option>
+      <option value="1">1 (Strongly Disagree)</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5 (Strongly Agree)</option>
+    </select>
+    <h3>Question 6:</h3>
+    <h4>You like singing loudly in the shower:</h4>
+    <select id="question6">
+      <option value=""></option>
+      <option value="1">1 (Strongly Disagree)</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5 (Strongly Agree)</option>
+    </select>
+  </div>
+  <div id="match-modal" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Your Match</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <h2 id="match-name"></h2>
+              <img id="match-photo" src="" alt="">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class="container">
+      <button type="submit" class="btn btn-danger btn-lg" id="submit"><span class="glyphicon glyphicon-flash"></span> Submit</button>
+  </div>
+  
+
+  
+  <footer class="footer">
+    <div class="container">
+      <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/DavidEMartin37/FriendFinder">GitHub Repo</a></p>
+    </div>
+  </footer>
+
+  
+  
+<script>
+  let userAnswers = [];
+ $("#submit").click(()=>{
+   event.preventDefault();
+   userAnswers = [];
+   for (let i = 1; i < 7; i++) {
+     userAnswers.push($("#question"+i).val())
+
+   }
+   let user = {
+     "name": $("#name").val(),
+     "photo":$("#photo").val(),
+     "scores": userAnswers
+   }
+   $.post("/api/friends", user, results=>{
+      console.log("My results are: " + results);
+      $("#match-name").text(results.name);
+      $("#match-photo").attr("src", results.photo);
+      $("#match-modal").modal("toggle");
+   })
+   console.log("The user is: " + user.name)
+ })
+
+</script>
+
+</body>
+
+</html>

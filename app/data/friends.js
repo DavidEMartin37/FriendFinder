@@ -1,0 +1,39 @@
+var friends = [
+  {
+    "name":"Tom",
+    "photo":"https://www.advocate.com/sites/advocate.com/files/2019/08/08/tombrady.jpg",
+    "scores":[
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ]
+  },
+  {
+    "name":"Morgan",
+    "photo":"https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1439,w_2560,x_0,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1492181001/articles/2015/05/06/morgan-freeman-shoots-straight-on-legalizing-marijuana-and-his-escape-from-new-york/150505-stern-morgan-freeman-tease_zomwym",
+    "scores":[
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+  },
+  {
+    "name":"Sting",
+    "photo":"https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cg_face%2Cq_auto:good%2Cw_300/MTE1ODA0OTcxNzkzMjIxMTMz/sting-9495433-1-402.jpg",
+    "scores":[
+        5,
+        1,
+        5,
+        1,
+        5,
+        1
+      ]
+  },
+]
+module.exports = friends;
