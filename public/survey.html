@@ -84,7 +84,7 @@
       <option value="5">5 (Strongly Agree)</option>
     </select>
   </div>
-  <div id="match-modal" role="dialog">
+  <div class="modal fade" id="match-modal" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -95,7 +95,7 @@
           </div>
           <div class="modal-body">
               <h2 id="match-name"></h2>
-              <img id="match-photo" src="" alt="">
+              <img class="img-responsive" id="match-photo" src="" alt="">
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -135,7 +135,7 @@
       console.log("My results are: " + results);
       $("#match-name").text(results.name);
       $("#match-photo").attr("src", results.photo);
-      $("#match-modal").modal("toggle");
+      $("#match-modal").modal("show");
    })
    console.log("The user is: " + user.name)
  })
